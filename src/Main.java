@@ -8,7 +8,24 @@ import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        computeMaximumSubarray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
+//        findClosestInteger("10010010");
+//    swapBits("10010011",6 , 7);
+//        checkWordParity("1000");
+//        A data[] = new A[]{
+//                new A(1,12),
+//                new A(10,20),
+//                new A(5,7)
+//        };
+//        Arrays.sort(data, (a,b) -> {
+//            return - Integer.compare(a.y, b.y);
+//        });
+//
+//        for(int i = 0; i < data.length; i++) {
+//            System.out.println(data[i] );
+//        }
+//
+//        System.out.println(Integer.compare(2,1));
+//        computeMaximumSubarray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
 //        computeMaximumSubarray(new int[]{0,3,-4,5,-6,7,1,6});
 //        intertwineArange(new int[]{0,3,-4,5,-6,7,1,6});
 //        findCoinsChange(new int[] {2,1,5,10,15});
@@ -257,6 +274,51 @@ public class Main {
 //      3,    4,    5,6,12
 //    0,  -1,   -2,
 //
+    private static void swapBits(String number, int i, int j) {
+        int word = Integer.parseInt(number, 2);
+        int iVal = word & 1 << i;
+        int jVal = word & 1 << j;
+        if(iVal != jVal) {
+            word = word ^ (1 << j | 1 << i);
+        }
+        /*
+        *    10010110   , 0,2
+        *    00000101
+        *XOR=10010011
+        *
+        * */
+        for(int k = number.length() - 1; k > -1; k--) {
+            System.out.print(""+ ( ((int)word&(1<<k)) != 0 ? 1:0) );
+        }
+    }
+
+    private static void checkWordParity(String number) {
+        int word = Integer.parseInt(number, 2);
+        boolean parity = true;
+        while(word != 0) {
+            word = word & (word - 1);
+            parity = !parity;
+        }
+        System.out.println("Parity of " + number + " is " + ((parity)? 0 : 1) );
+    }
+
+    private static class A {
+        int x;
+        int y;
+        public A(int x,int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return "A{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    '}';
+        }
+    }
+
     private static void computeMaximumSubarray(int array[]) {
         int min = 0, max = 0, maxDiff = 0;
         int sumPlot[] = new int[array.length];
@@ -395,4 +457,80 @@ public class Main {
         System.out.println(numberCopy + " % " + powerOfTwoCopy + " = " + number);
 
     }
+
+    // There are two main cases:
+
+    // 1)   When LSB is '0':
+    //      In this case the first '1' must be shifted with one position to right;
+    //                Input: "10001000"
+    //      Expected output: "10000100"
+
+    // 2)   When LSB is '1':
+    //      In this case the first '0' must be set to '1', and first '1' must be set to '0'
+    //                Input: "10000111"
+    //      Expected output: "10001110"
+
+    private static void findClosestInteger(String word) { // ex: word = "10001000"
+
+        System.out.println(word);           // Print initial binary format of the number
+        int x = Integer.parseInt(word, 2);  // Convert String to int
+
+        if((x & 1) == 0) {                  // Evaluates LSB value
+            // Case when LSB = '0':
+            // Input:  x = 10001000
+
+            int firstOne = x & ~(x -1);     // get first '1' position (from right to left)
+            // firstOne = 00001000
+            x = x & (x - 1);                // set first '1' to '0'
+            // x = 10000000
+            x = x | (firstOne >> 1);        // "shift" first '1' with one position to right
+            // x = 10000100
+
+        } else {
+            // Case when LSB = '1':
+            // Input: x = 10000111
+
+            int firstZero = ~x & ~(~x - 1); // get first '0' position (from right to left)
+            // firstZero = 00001000
+            x = x & (~1);                   // set first '1', which is the LSB, to '0'
+            // x = 10000110
+            x = x | firstZero;              // set first '0' to '1'
+            // x = 10001110
+
+        }
+
+        for(int i = word.length() - 1; i > -1  ; i--) {       // print the closest integer with same weight
+            System.out.print("" + ( ( (x & 1 << i) != 0) ? 1 : 0) );
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
