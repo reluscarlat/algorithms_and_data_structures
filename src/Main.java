@@ -4,10 +4,26 @@ import dataStructures.tree.BinarySearchTree;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
+
+//        isPalindromeString("ababa");
+//        sampleOfflineData(new int[]{1,2,3,4,5,6,7,8,9}, 4);
+//        findPrimes(30);
+//        sellStockTwice(new int[] {12,11,13,9,12,8,14,13,15});
+//        deleteDuplicates2(new int[] {1,2,2,2,3,4,5,5,6,7,8,8});
+//        sellStockOnce2(new int[] {310, 315, 275, 295, 260, 270, 290, 230, 255, 250});
+//        System.out.println(advanceTroughArray(new int[]{3,2,0,0,2,0,1}));
+
+//        int i = 20;
+//        do{
+//            System.out.println(generateNumberBetween(5,11));
+//        } while (i-- > 0);
+
+//        System.out.println(binaryMultiply(2,7));
 //        findClosestInteger("10010010");
 //    swapBits("10010011",6 , 7);
 //        checkWordParity("1000");
@@ -274,6 +290,8 @@ public class Main {
 //      3,    4,    5,6,12
 //    0,  -1,   -2,
 //
+
+
     private static void swapBits(String number, int i, int j) {
         int word = Integer.parseInt(number, 2);
         int iVal = word & 1 << i;
@@ -504,7 +522,270 @@ public class Main {
         }
     }
 
+    private static int binaryAdd(int x, int y) {
+        // 1011
+        //+0001
+        //=1100
+        int i = 1;
+        int carry = 0;
+        while(y != 0) {
+            carry = (x & y) << 1;
+            x = x ^ y;
+            y = carry;
+        }
+        return x;
+    }
 
+    private static int binaryMultiply(int x, int y) {
+        y = binarySubstraction(y,1);
+        int copy = x;
+        while(y != 0) {
+            x = binaryAdd(x, copy);
+            y = binarySubstraction(y, 1);
+        }
+        return x;
+    }
+
+
+
+    private static int binarySubstraction(int x, int y) {
+//        1001
+//        0101
+//        1110    => 0001 & 0101 => 0001 << 1 => 0010
+//        XOR = > x = 1011
+//                    0010 = 1001
+//
+        int carry = 0;
+        while(y != 0) {
+            carry = ((~x) & y) << 1;
+            x = x ^ y;
+            y = carry;
+        }
+        return x;
+    }
+
+    private static int bitRandomGenerator() {
+        if((int)(Math.random()*10) % 2 == 1) {
+            return 1;  // 1
+        } else {
+            return 0; // 0
+        }
+    }
+
+    // [a, b]
+    // [1, 5]
+
+    // 5 = > generate number < 2pow3  = 8            1000
+    //
+
+    // 1110 = 14
+    // 1101
+
+    private static int generateNumberBetween(int a, int b) {
+        int aux = b - a;
+        int i = 0;
+        int result  = 0;
+        // 1000 = 8
+        // 0001
+        //
+        // 0000 = 0001 | 0011
+        if((aux & (aux - 1)) == 0) {
+            while((aux & 1<<i) == 0 ) {
+                result = (result | (bitRandomGenerator() << i));
+                i++;
+            }
+            result = result + bitRandomGenerator() + a;
+        } else {
+            do {
+                aux = aux & (aux - 1);
+            } while ((aux & (aux - 1)) != 0);
+            aux = aux << 1;
+            while((aux & 1<<i) == 0 ) {
+                result = (result | bitRandomGenerator() << i) ;
+                i++;
+            }
+            result = result + bitRandomGenerator() + a;
+            if(result > b) {
+                result = generateNumberBetween(a,b);
+            }
+        }
+        return result;
+    }
+
+    // 3 3 1 0 2 0 1
+    // 0 1 2 3 4 5 6
+    private static boolean advanceTroughArray(int arr[]) {
+        int i = arr.length - 1;
+        boolean flag = true;
+        while( flag == true) {
+            flag = false;
+            while(arr[i] != 0) {
+                i--;
+                if(i == 0) {
+                    return true;
+                }
+            }
+            for(int j = 0; j < i; j++) {
+                if(arr[j] > i - j) {
+                    i = j;
+                    flag = true;
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static void deleteDuplicates1(int array[]) {
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        for(int i = 0; i < array.length - 1; i++) {
+            if(array[i] == array[i + 1]) {
+                array[i] = Integer.MAX_VALUE;
+            }
+        }
+        Arrays.sort(array);
+        System.out.println();
+        for(int i = array.length - 1; i >= 0; i--) {
+            if(array[i] == Integer.MAX_VALUE) {
+                array[i] = 0;
+            }
+        }
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+
+    private static void deleteDuplicates2(int array[]) {
+        int k = 1;
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+
+        for(int i = 1; i < array.length - 1; i++) {
+            if(array[i] != array[i-1]) {
+                array[k++] = array[i];
+            }
+        }
+        for(int i = k; i < array.length; i++) {
+            array[i] = 0;
+        }
+
+        System.out.println();
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+
+    private static void sellStockOnce(int array[]) {
+        int min = 0;
+        int max = 1;
+        int profit = 0;
+        for(int i = 1; i < array.length; i++) {
+            max = i;
+            if(array[i] < array[min]) {
+                min = i;
+            }
+            if(max > min && profit < array[max] - array[min]) {
+                profit = array[max] - array[min];
+            }
+        }
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Profit = " + profit);
+    }
+
+    private static void sellStockOnce2(int array[]) {
+        int min = array[0];
+        int maxProfit = 0;
+        for(int i = 1; i < array.length; i++) {
+            maxProfit = Math.max(maxProfit, array[i] - min);
+            min = Math.min(min, array[i]);
+        }
+        for(int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + ", ");
+        }
+        System.out.println();
+        System.out.println("Profit = " + maxProfit);
+    }
+
+    private static void sellStockTwice(int array[]) {
+        PriorityQueue<Integer> q = new PriorityQueue<Integer>((a,b) -> -Integer.compare(a.intValue(), b.intValue()));
+        int min = array[0];
+        int prevMin = -1;
+        int profit = 0;
+        for(int i = 1; i < array.length; i++) {  //O(n)
+            if(array[i] - min > profit) {
+                profit = array[i] - min;
+                if(prevMin == min) {
+                    q.poll(); // O(1)
+                }
+                q.add(profit); // O(log n)
+            }
+            prevMin = min;
+            min = Math.min(array[i], min);
+            System.out.println(q.toString());
+        }
+        System.out.println("Profit 1 = " + q.poll());
+        System.out.println("Profit 2 = " + q.poll());
+    }  // O(n*log(n))
+
+
+    public static void findPrimes(int n) {
+        boolean arr[] = new boolean[n];
+        for(int i = 0; i < n; i++) {
+            arr[i] = true;
+        }
+        arr[0] = true;
+        arr[1] = true;
+        for(int i = 2; i < n/2; i++) {
+            arr[i*2] = false;
+        }
+        arr[2] = true;
+        for(int i = 3; i < n/3; i++) {
+            arr[i*3] = false;
+        }
+        arr[3] = true;
+        for(int i = 5; i < n/5; i++) {
+            arr[i*5] = false;
+        }
+        for(int i = 7; i < n/7; i++) {
+            arr[i*7] = false;
+        }
+        arr[7] = true;
+        for(int i = 0; i < n; i++) {
+            if(arr[i]) System.out.print(i+" ");
+        }
+    }
+
+    // 1 2 3 4 9 6 2 3  5
+
+    public static void sampleOfflineData(int arr[], int k) {
+        int i = 0;
+        int result[] = new int[k];
+        while(i != k) {
+            int rand = (int)(Math.random()*(double)(arr.length - 1 - i));
+            result[i] = arr[rand];
+            swap(rand, arr.length - 1 - i, arr);
+            i++;
+        }
+        for(int j = 0; j < k; j++) {
+            System.out.print(result[j] + " ");
+        }
+    }
+
+    public static void isPalindromeString(String s) {
+        for(int i = 0, j = s.length() - 1; i < j; i++, j--) {
+            if(s.charAt(i) != s.charAt(j)) {
+                System.out.println(s + " is not palindrome.");
+                return;
+            }
+        }
+        System.out.println(s + " is palindrome.");
+    }
 
 
 
