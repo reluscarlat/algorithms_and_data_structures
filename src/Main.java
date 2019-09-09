@@ -9,7 +9,10 @@ public class Main {
 
 //        compareHashValues("abcd", "abdc");
 //        System.out.println(Integer.MAX_VALUE +" " + (-1 & 0X7FFFFFFF));
-//        findSubstring2("abracadabra","braca");
+        findSubstring2("abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addqwereasdsadsadasda","dqwerea");
 //        findSubstring1("abracadabra","cada");
 //        sinusoidalString("Hello_World!");
 //        computeMnemonic(new int[]{2,5});
@@ -1020,7 +1023,45 @@ public class Main {
         System.out.println("It doesn't contains the substring.");
     }
 
+    public static void findSubstring3(String s, String c) {
+        System.out.println(s);
+        System.out.println(c);
+        if(s.length() < c.length()) {
+            System.out.println("It doesn't contains the substring.");
+        }
+        int cHash = 0;
+        int sHash = 0;
+        boolean containsSubStr;
+        int g = 11;
+        for(int i = 0 ; i < c.length(); i++) {
+            cHash += c.charAt(i)*(int)Math.pow(g,i);
+        }
+        for(int i = 0 ; i < c.length(); i++) {
+            sHash += s.charAt(i)*(int)Math.pow(g,i);
+        }
+        System.out.println("C Hash = " + cHash);
+        System.out.println("S Hash = " + sHash);
+        for(int i = 0; i < s.length() - c.length(); i++) {
+            if(cHash == sHash) {
+                containsSubStr = true;
+                for(int j = 0; j < c.length(); j++) {
+                    if(s.charAt(i+j) != c.charAt(j)) {
+                        containsSubStr = false;
+                    }
+                }
+                if(containsSubStr) {
+                    System.out.println("It contains the substring.");
+                    return;
+                }
+            }
+            sHash = (sHash - s.charAt(i))/g;
+            sHash += s.charAt(i + c.length())*(int)Math.pow(g,c.length()-1);
+            System.out.println("S Hash = " + sHash);
+        }
+        System.out.println("It doesn't contains the substring.");
+    }
 
+    
 
 
 
