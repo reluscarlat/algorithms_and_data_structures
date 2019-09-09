@@ -2,14 +2,22 @@ import algorithms.recursion.Fibonacci;
 import dataStructures.graph.GraphHashTable;
 import dataStructures.tree.BinarySearchTree;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 
+//        compareHashValues("abcd", "abdc");
+//        System.out.println(Integer.MAX_VALUE +" " + (-1 & 0X7FFFFFFF));
+//        findSubstring2("abracadabra","braca");
+//        findSubstring1("abracadabra","cada");
+//        sinusoidalString("Hello_World!");
+//        computeMnemonic(new int[]{2,5});
+//        permute(new int[]{1,2,3,4}, 0);
+//        reverseSentence(new char[]{'a','n','a',' ','m','e','r','g','e',' ','l','a',' ','m','a','r','e'});
+//        baseConvert("615",7,13);
+//        System.out.println((new StringBuilder()).append(""+1));
+//        convertToInt("1234567089");
 //        isPalindromeString("ababa");
 //        sampleOfflineData(new int[]{1,2,3,4,5,6,7,8,9}, 4);
 //        findPrimes(30);
@@ -787,11 +795,230 @@ public class Main {
         System.out.println(s + " is palindrome.");
     }
 
+    public static void convertToInt(String s) {
+        int result = 0;
+        for(int i = 0; i < s.length(); i++) {
+            result = result * 10 + (int)s.charAt(i) - 48;
+        }
+        System.out.println("For " + s + " result is " + result);
+    }
 
 
+    // s7  = 615, b1 = 7, b2 = 13
+    // s10 = 6*7^2 + 1*7^1 + 5*7^0  =  294 + 7 + 5 = 306
+    // s15 = 306 / 225 = 1; 81 / 15 =
+    public static void baseConvert(String s, int b1, int b2) {
+        int base10 = 0;
+        int value = 0;
+        StringBuilder r = new StringBuilder();
+        for(int i = s.length() - 1, j = 0 ; i >= 0 && j < s.length(); i--, j++) {
+            base10 = base10 + (Integer.parseInt(s.charAt(j)+"")*(int)Math.pow(7,i));
+            System.out.println("base10 = " + base10);
+        }
+        int t = 1;
+        while(base10 / Math.pow(b2,t) > b2){
+            t++;
+        }
+        while(t > -1) {
+            value = base10 / (int)Math.pow(b2,t);
+            System.out.println("val = " + value);
+            if(value < 10 ) {
+                r.append(""+value);
+            } else {
+                r.append((char)(value + 55));  //  A = 65
+            }
+            base10 = base10 % (int)Math.pow(b2,t);
+            t--;
+        }
+        System.out.println(s + " in base " + b1 + " is equal with " + r + " in base " + b2);
+    }
+
+    public static void reverseWord(char arr[], int start, int end) {
+        char aux;
+        for(int i = start, j = end; i < j; i++, j--) {
+            aux = arr[i];
+            arr[i] = arr[j];
+            arr[j] = aux;
+        }
+    }
+
+    public static void reverseSentence( char arr[]) {
+        for(int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+        }
+        System.out.println();
+        reverseWord(arr,0,arr.length - 1);
+        int left = 0;
+        int right = -1;
+        while(right < arr.length) {
+            left = right + 1;
+            while(arr[right + 1] != ' ' && right < arr.length) {
+                right++;
+            }
+            reverseWord(arr, left, right);
+            for(int i = 0; i < arr.length; i++) {
+                System.out.print(arr[i]);
+            }
+            System.out.println("\nright = " + right);
+            right++;
+        }
+        for(int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]);
+        }
+    }
+
+//    public static void permute2(List<int[]> result, int arr[], int start) {
+//        for(int i = start + 1; i < arr.length; i++) {
+//            swap(start, i, arr);
+//            int r[] = new int[arr.length];
+//            for(int j = 0; j < arr.length; j++) {
+//                r[j] = arr[j];
+//            }
+//            result.add(r);
+//            for( int k = 0; k < r.length; k++) System.out.print(" " + r[k]);
+//            System.out.println();
+//            permute(result, r, start + 1);
+//        }
+//    }
 
 
+    //   123
+    /*                          123
+     i = 0        123           213             321
+     i = 1   123   132     213   231        321   312
+     i = 2   123   132
+            */
 
+
+    //  213 321
+    //
+
+    public static void permute(int arr[], int start) {
+        for(int i = start; i < arr.length; i++) {
+            if(start == arr.length - 1) {
+                for( int j = 0; j < arr.length; j++) {
+                    System.out.print(" " + arr[j]);
+                }
+                System.out.println();
+            }
+            swap(start, i,arr);
+            permute(arr, start + 1);
+            swap(start, i, arr);
+        }
+    }
+
+    public static List<String> multiplySet(List<String> l1, String l2) {
+        List<String> result =  new ArrayList<>();
+        for(String v1 : l1) {
+            for(int i = 0; i < l2.length(); i++) {
+                result.add(v1.concat(l2.charAt(i)+""));
+            }
+        }
+        return result;
+    }
+    public static void computeMnemonic(int arr[]) {
+        String map[] = new String[]{
+            "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs","tuv", "xyzw"
+        };
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i< map[arr[0]].length(); i++) {
+            result.add(map[arr[0]].charAt(i)+"");
+        }
+        for(int i = 1; i < arr.length; i++) {        // 0789123734
+            result = multiplySet(result, map[arr[i]]);
+        }
+        for(String s : result) {
+            System.out.println(s);
+        }
+    }
+
+    private static void sinusoidalString(String s) {
+        System.out.println(s);
+        for(int i  = 1; i < s.length(); i += 4) {
+            System.out.print(s.charAt(i));
+        }
+        for(int i  = 0; i < s.length(); i += 2) {
+            System.out.print(s.charAt(i));
+        }
+        for(int i  = 3; i < s.length(); i += 4) {
+            System.out.print(s.charAt(i));
+        }
+    }
+
+    public static void hashFunction(String s) {
+        int hashValue = 0;
+        int g = 31;
+        int len = 100;
+        for(int i = 0; i < s.length(); i++) {
+            hashValue = hashValue * g + s.charAt(i);
+        }
+        hashValue = hashValue & 0x7FFFFFFF;
+        hashValue = hashValue % len;
+        System.out.println("Hash value for " + s + " is " + hashValue);
+    }
+
+    public static void compareHashValues(String s1, String s2) {
+        hashFunction(s1);
+        hashFunction(s2);
+    }
+
+
+    public static void findSubstring1(String s, String c) {
+        if(s.length() < c.length()) {
+            System.out.println(s.toUpperCase() + " doesn't contains substring " + c.toUpperCase());
+            return;
+        }
+        boolean containsSubstring = false;
+        for(int i = 0; i < s.length() - c.length(); i++) {
+            if(c.hashCode() == s.substring(i, i + c.length()).hashCode()) {
+                containsSubstring = true;
+                for(int j = i; j < i + c.length(); j++) {
+                    if(s.charAt(j) != c.charAt(j - i)) {
+                        containsSubstring = false;
+                    }
+                }
+                if(containsSubstring) {
+                    System.out.println(s.toUpperCase() + " contains substring " + c.toUpperCase());
+                    return;
+                }
+            }
+        }
+        System.out.println(s.toUpperCase() + " doesn't contains substring " + c.toUpperCase());
+    }
+
+    public static void findSubstring2(String s, String c) {
+        System.out.println(s);
+        System.out.println(c);
+        if(s.length() < c.length()) {
+            System.out.println("It doesn't contains the substring.");
+        }
+        int cHashValue = 0;
+        int sHashValue = 0;
+        boolean containsSubStr = false;
+        for(int i = 0 ; i < c.length(); i++) {
+            cHashValue += c.charAt(i);
+        }
+        for(int i = 0 ; i < c.length(); i++) {
+            sHashValue += s.charAt(i);
+        }
+
+        for(int i = 0; i < s.length() - c.length(); i++) {
+            if(cHashValue == sHashValue) {
+                containsSubStr = true;
+                for(int j = 0; j < c.length(); j++) {
+                    if(s.charAt(i+j) != c.charAt(j)) {
+                        containsSubStr = false;
+                    }
+                }
+                if(containsSubStr) {
+                    System.out.println("It contains the substring.");
+                    return;
+                }
+            }
+            sHashValue = sHashValue - s.charAt(i) + s.charAt(i + c.length());
+        }
+        System.out.println("It doesn't contains the substring.");
+    }
 
 
 
