@@ -7,12 +7,37 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
+        reverseString("abc");
+
+//        List<Integer> list = Arrays.asList(77,1,2,5,3,2,5,9,3,2,8,9,4,6);
+//        int k = 4;
+//        HashSet<Integer> list2 = new HashSet<>();
+//        list.forEach(s-> {
+//            if(!list2.contains(s)) {
+//                list2.add(s);
+//            }
+//        });
+//        int[] values = new int[list2.size()];
+//        int i = 0;
+//        for(Integer v : list2) {
+//            values[i++] = v;
+//        }
+//        for(int v: values) {
+//            System.out.println(" " + v);
+//        }
+//        Arrays.sort(values);                // n*log(n)
+//
+//        System.out.println(values[k - 1]);
+
+        // [1 |2 9 7 |4 | 3 9 | 5]
+        //
+
 //        compareHashValues("abcd", "abdc");
 //        System.out.println(Integer.MAX_VALUE +" " + (-1 & 0X7FFFFFFF));
-        findSubstring2("abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
-                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
-                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
-                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addqwereasdsadsadasda","dqwerea");
+//        findSubstring2("abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+//                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+//                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addq" +
+//                "abcdefdafdafdafda faddsadsadsadsadw2addqabcdefdafdafdafda faddsadsadsadsadw2addqwereasdsadsadasda","dqwerea");
 //        findSubstring1("abracadabra","cada");
 //        sinusoidalString("Hello_World!");
 //        computeMnemonic(new int[]{2,5});
@@ -1061,7 +1086,13 @@ public class Main {
         System.out.println("It doesn't contains the substring.");
     }
 
-    
+    public static void reverseString(String s) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = s.length() - 1; i > -1; i--) {
+            sb.append(s.charAt(i));
+        }
+        System.out.println(sb);
+    }
 
 
 
