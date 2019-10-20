@@ -6,8 +6,20 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        reverseString("abc");
+//        isLetterConstructibleFromMagazine("abbc", "abc");
+//        isPalindromicPermutation("aab");
+//        System.out.println(minWindow("ADOBECODEBANC","ABC"));
+//        findNearestRepeatedWord2(new String[]{"All", "work", "and", "no", "play",
+//                "makes", "for", "work", "no", "fun", "and", "no", "results"});
+//        String s = "scooby do";
+//        char[] aux = s.toCharArray();
+//        Arrays.sort(aux);
+//        System.out.println(new String(aux));
+//        getMinMax(new int[]{5,3,8,7,1,4,9,2});
+//    computeLowerSqrt(5);
+//        System.out.println(Math.floor(Math.sqrt(300)));
+//        longestCommonSubstring("abcdefghijklmoana", "defix");
+//        reverseString("abc");
 
 //        List<Integer> list = Arrays.asList(77,1,2,5,3,2,5,9,3,2,8,9,4,6);
 //        int k = 4;
@@ -1094,23 +1106,211 @@ public class Main {
         System.out.println(sb);
     }
 
+    private static void longestCommonSubstring(String str1, String str2) {
+        String s1 = str1;
+        String s2 = str2;
+        int min = 0;
+        String result = "";
+        if(str1.length() < str2.length()) {
+            s1 = str2;
+            s2 = str1;
+        }
+        StringBuilder current = new StringBuilder();
+        for(int i = 0; i < s2.length(); i++) {
+            current.delete(0, current.length());
+            for(int j = i; j < s2.length(); j++) {
+                current.append(s2.charAt(j));
+                System.out.println(current);
+            }
+            if(s1.contains(current) && current.length() > min) {
+                result = current.toString();
+                min = result.length() - 1;
+                System.out.println("S1 = " + s1 + "   S2 = " + s2 +" \nCommon String = " + result);
+            }
+
+        }
+        System.out.println("S1 = " + s1 + "   S2 = " + s2 +" \nCommon String = " + result);
+    }
+
+    //     9
+    /*     l = 0, r= 10, m = 5;
+           l = 0, r = 5, m = 2;
+           l = 2, r = 5, m = 3;
+           l = 3, r = 5, m = 4;
+           l = 3, r = 4, m = 3;
+     */
+    public static void computeLowerSqrt(int x) {
+        int left = 0;
+        int right = x;
+        int mid = (left + right) / 2;
+        while(left + 1 < right) {
+            if(mid*mid > x) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+            mid = (left + right) / 2;
+        }
+        System.out.println("Sqrt = " + left);
+    }
+
+    private static void getMinMax(int[] arr) {
+        for(int val : arr) System.out.print(" " + val);
+        System.out.println();
+        getMinMax(arr, 0, arr.length - 1);
+        for(int val : arr) System.out.print(" " + val);
+        System.out.println();
+        System.out.println("min = " + arr[0] + " , max = " + arr[arr.length -1]);
+    }
 
 
+    // 5|3|6|1|7|9|8|4
+    // 3 5|1 6|7 9|4 8   4
+    // 1 5 3 6|4 8 7 9 11  2
+    // 1 5 3 6 4 8 7 9|  2
 
+//    5,3,6,7,1,4,9,2
+    private static void getMinMax(int[] arr, int left, int right) {
+        int mid = (left + right) / 2;
+        if(mid == left) {
+            if(arr[left] > arr[right]) {
+                swap(left, right, arr);
+                return;
+            }
+        } else {
+            if(arr[left] > arr[mid + 1]) {
+                swap(left, mid + 1, arr);
+            }
+            if(arr[mid] > arr[right]) {
+                swap(right, mid, arr);
+            }
+        }
+        for(int val : arr) System.out.print(" " + val);
+        System.out.println();
+//        System.out.println(" MID = " + mid);
+        if(mid == 0 || mid == arr.length - 10) return;
+        getMinMax(arr, left, mid);
+        getMinMax(arr, mid + 1, right);
+    }
 
+    public static void findNearestRepeatedWord(String[] arr) {
+        HashMap<String, List<Integer>> map = new HashMap<>();
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < arr.length; i++) {
+            if(!map.containsKey(arr[i])) {
+                ArrayList<Integer>  list = new ArrayList<>();
+                list.add(i);
+                map.put(arr[i], list);
+            } else {
+                map.get(arr[i]).add(i);
+            }
+        }
+        for(List<Integer> list : map.values()) {
+            if(list.size() == 1) continue;
+            for(int j = 0; j < list.size() - 1; j ++) {
+                if(list.get(j+1).intValue() - list.get(j) < min) {
+                    min = list.get(j+1).intValue() - list.get(j);
+                }
+            }
+        }
+        for(String s : arr) {
+            System.out.print(s + " ");
+        }
+        System.out.println("\nDistance = " + (min - 1));
+    }
 
+    public static void findNearestRepeatedWord2(String[] arr) {
+        int min = Integer.MAX_VALUE;
+        HashMap<String, Integer> map = new HashMap<>();
+        for( int k = 0; k < arr.length; k++) {
+            if(!map.containsKey(arr[k])) {
+                map.put(arr[k], k);
+            } else {
+                min = Integer.min(min, k - map.get(arr[k]).intValue() - 1);
+                map.put(arr[k], k);
+            }
+        }
+        System.out.println("Distance2 = " + min);
+    }
 
+    public static String minWindow(String s, String t) {
+        char[] arr = s.toCharArray();
+        int minIndex = Integer.MAX_VALUE;
+        int maxIndex = -1;
+        int distance = Integer.MAX_VALUE;
+        String result = "";
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(char c : t.toCharArray()) {
+            map.put(c, -1);
+        }
+        boolean allCharsFounded = false;
+        for(int i = 0; i < arr.length; i++) {
+            if(map.containsKey(arr[i])) {
+                map.put(arr[i], i);
+                if(!allCharsFounded) {
+                    for(Integer val : map.values()) {
+                        if(val.intValue() == -1) {
+                            break;
+                        }
+                        allCharsFounded = true;
+                    }
+                    continue;
+                }
+                minIndex = Integer.min(i,minIndex);
+                maxIndex = Integer.max(i,maxIndex);
+                if(distance > maxIndex - minIndex) {
+                    result = s.substring(minIndex, maxIndex + 1);
+                    distance = maxIndex - minIndex;
+                }
+            }
+        }
+        //A 0, 10
+        //B 3, 9
+        //C 5, 12
+        return result;
+    }
 
+    public static void isPalindromicPermutation(String str) {
+        HashSet<Character> set = new HashSet<>();
+        char[] arr = str.toCharArray();
+        for(int i = 0; i < arr.length; i++) {
+            if(set.contains(arr[i])) {
+                set.remove(arr[i]);
+            } else {
+                set.add(arr[i]);
+            }
+        }
+        if(set.size() <= 1) {
+            System.out.println(str + " is palindromic permutation");
+        } else {
+            System.out.println(str + " is not palindromic permutation");
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
+    public static void isLetterConstructibleFromMagazine(String letter, String magazine) {
+        if(magazine.toCharArray().length < letter.toCharArray().length) {
+            System.out.println("Can't be constructed.");
+            return;
+        }
+        char[] magazineChars = magazine.toCharArray();
+        char[] letterChars = letter.toCharArray();
+        HashMap<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < magazineChars.length; i++) {
+            if(map.containsKey(magazineChars[i])) {
+                map.put(magazineChars[i], map.get(magazineChars) + 1);
+            } else {
+                map.put(magazineChars[i],1);
+            }
+        }
+        for(int i = 0; i < letterChars.length; i++) {
+            if(!map.containsKey(letterChars[i]) || map.get(letterChars[i]).intValue() == 0) {
+                System.out.println("Can't be constructed.");
+                return;
+            } else {
+                map.put(letterChars[i], map.get(letterChars[i]) - 1);
+            }
+        }
+        System.out.println("Can be constructed");
+    }
 
 }
