@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        generatePowerSet(new int[]{1,2,3,4});
 //        generatePermutations(new int[]{1,2,3,4,});
 //        sortArrayWithRepeatedEntries1();
 //        sortArrayWithRepeatedEntries2();
@@ -1649,6 +1650,9 @@ public class Main {
         });
     }
 
+    //-----------------
+    // 16.3
+
     // 1234
     // 1 , 234
     // 2 , 134
@@ -1686,6 +1690,27 @@ public class Main {
         }
     }
 
+    //-----------------
+    // 16.4
+
+    public static void generatePowerSet(int[] arr) {
+        for(int i = 0; i < arr.length; i++) {
+            generatePowerSet(arr,i);
+        }
+    }
+
+    private static void generatePowerSet(int[] arr, int start) {
+        ArrayList<Integer> startingList = new ArrayList<>();
+        for(int i = 0; i < start; i++) {
+            startingList.add(arr[i]);
+        }
+        for(int i = start; i < arr.length; i++) {
+            ArrayList<Integer> list = new ArrayList<>();
+            startingList.forEach(val->list.add(val));
+            list.add(arr[i]);
+            System.out.println(list.toString());
+        }
+    }
 
 
 

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2017f71e-d265-4cad-808b-2b48cbba21d1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$A.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="1676" column="47" lean-forward="true" selection-start-line="1676" selection-start-column="47" selection-end-line="1676" selection-end-column="47" />
+            <state relative-caret-position="136">
+              <caret line="1705" column="9" selection-start-line="1705" selection-start-column="9" selection-end-line="1705" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,7 +137,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="708" />
     <option name="y" value="340" />
     <option name="width" value="503" />
@@ -181,7 +179,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571792358815" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571794065929" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../algorithms_and_data_structures" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -232,12 +230,12 @@
       <workItem from="1566767878916" duration="102649000" />
       <workItem from="1568474952288" duration="16428000" />
       <workItem from="1571499418755" duration="3822000" />
-      <workItem from="1571583057679" duration="35248000" />
+      <workItem from="1571583057679" duration="36863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="322605000" />
+    <option name="totallyTimeSpent" value="324220000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -257,7 +255,7 @@
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5010661" side_tool="true" weight="0.301179" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="Find" order="6" weight="0.42872456" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.4989339" visible="true" weight="0.34776536" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.4989339" visible="true" weight="0.40921786" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.39978564" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32368702" />
@@ -535,8 +533,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="1676" column="47" lean-forward="true" selection-start-line="1676" selection-start-column="47" selection-end-line="1676" selection-end-column="47" />
+        <state relative-caret-position="136">
+          <caret line="1705" column="9" selection-start-line="1705" selection-start-column="9" selection-end-line="1705" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
