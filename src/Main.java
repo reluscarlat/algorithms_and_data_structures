@@ -6,6 +6,21 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+//        generatePermutations(new int[]{1,2,3,4,});
+//        sortArrayWithRepeatedEntries1();
+//        sortArrayWithRepeatedEntries2();
+//        removeFirstNameDuplicate();
+//        mergeTwoSortedArrays(
+//                new int[]{3,7,11,20,21},
+//                new int[]{4,8,15,22}
+//        );
+//        computeIntersectionOfSortedArrays(
+//                new int[] {1,2,3,4,5,6,7},
+//                new int[] {2,4,6,9,11,16}
+//        );
+//        computeTheAverageTopThreeScores();
+//        findLongestSubarrayWithDistinctEntries("fsfentnwe");
+//        findLongestSubarrayWithDistinctEntries2("fsfentnwe");
 //        isLetterConstructibleFromMagazine("abbc", "abc");
 //        isPalindromicPermutation("aab");
 //        System.out.println(minWindow("ADOBECODEBANC","ABC"));
@@ -1313,4 +1328,390 @@ public class Main {
         System.out.println("Can be constructed");
     }
 
+    /*
+    * f,s,f,e,t,w,e,n,w,e   = >   s,f,e,t,w
+    * map<let,pos>
+    * currentSize = 0
+    * if(map contains key currentLetter)
+    *   then remove all pairs with pos < currentLettrPos
+    * else
+    *   if(map values size > curentSize)
+    *       then currentSize = map values size
+    */
+
+
+    /*
+        for letter in letters:
+            if map contains letter
+                then minIndex = map getIndex for letter
+                map = new map
+            else
+                map put new letter
+            length = max (length , map values length)
+     */
+
+    private static HashMap<Character, Integer> recreateMap(char[] arr, int left, int right) {
+        HashMap<Character, Integer> newMap = new HashMap<>();
+        for(int i = left; i <= right; i++) {
+            newMap.put(arr[i],i);
+        }
+        return newMap;
+    }
+
+    public static void findLongestSubarrayWithDistinctEntries(String str) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        char[] arr = str.toCharArray();
+        int length = 0;
+        int left;
+        for(int i = 0; i < arr.length; i++) {
+            if(map.containsKey(arr[i])) {
+                left = map.get(arr[i]).intValue();
+                map = recreateMap(arr,left,i);
+            } else {
+                map.put(arr[i],i);
+            }
+            length = length < map.size() ? map.size() : length;
+        }
+    }
+
+    public static void findLongestSubarrayWithDistinctEntries2(String str) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        char[] arr = str.toCharArray();
+        int length = 0;
+        int left = 0;
+        int right;
+        for(int i = 0; i < arr.length; i++) {
+            if(map.containsKey(arr[i])) {
+                right = map.get(arr[i]).intValue();
+                for(int j = left; j < right; j++) {
+                    map.remove(arr[j]);
+                }
+                map.put(arr[i],i);
+            }
+            map.put(arr[i],i);
+            length = (length < map.size()) ? map.size() : length;
+        }
+        System.out.println(length);
+    }
+
+//    public static int longestConsecutive(int[] nums) {
+//        // map<value, sequenceLength>
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        int longestSequence = 0;
+//        map.keySet().iterator().forEachRemaining(key->{});
+//        for(int i = 0; i < nums.length; i++) {
+//            map.put(nums[i], 1);
+//        }
+//        for(int i = 0; i < nums.length; i++) {
+//            if(map.containsKey(nums[i] - 1)) {
+//                map.put(nums[i], map.get(nums[i]) + 1);
+//            }
+//        }
+//        longestSequence = Collections.max(map.values());
+//        return longestSequence;
+//    }
+
+    //----
+    private static int getMaxLength(int[] arr) {
+        int maxLength = 1;
+        int currentLength = 1;
+        for(int i = 0; i < arr.length - 1; i++) {
+            if(arr[i] + 1 == arr[i + 1]) {
+                currentLength++;
+            } else {
+                currentLength = 1;
+            }
+            maxLength = Integer.max(maxLength, currentLength);
+        }
+        return maxLength;
+    }
+
+    private static int[] getUniqueElementsArray(int[] nums) {
+        SortedSet<Integer> sortedSet = new TreeSet<>();
+        int k = 0;
+        for(int i = 0; i < nums.length; i++) {
+            sortedSet.add(nums[i]);
+        }
+        int arr[] = new int[sortedSet.size()];
+        for(Integer value : sortedSet) {
+            arr[k] = value.intValue();
+            k++;
+        }
+        return arr;
+    }
+
+    public static int longestConsecutiveNumbersSequence(int[] nums) {
+        if(nums.length == 0) return 0;
+        int maxLength = 0;
+        int[] arr = getUniqueElementsArray(nums);
+        maxLength = getMaxLength(arr);
+        return maxLength;
+    }
+
+    // 13.11
+    public static void computeTheAverageTopThreeScores() {
+        HashMap<String, TreeSet<Integer>> map = new HashMap<>();
+
+        map.put("Roze",new TreeSet<Integer>(Arrays.asList(
+                3,6,8,9
+        )));
+        map.put("Smith",new TreeSet<Integer>(Arrays.asList(
+                3,2,4,8
+        )));
+
+        map.put("Mike",new TreeSet<Integer>(Arrays.asList(
+                10,2
+        )));
+        TreeSet<Integer> currentMarks;
+        float maxMarksAvg = 0;
+        for(String key : map.keySet()) { // O(n)
+            currentMarks = map.get(key); // O(1)
+            if(currentMarks.size() > 2) {
+                maxMarksAvg = Float.max(maxMarksAvg,
+                        (float)(((float)currentMarks.pollLast() +
+                                (float)currentMarks.pollLast() +
+                                (float)currentMarks.pollLast() ) / 3));
+            }
+        }
+        System.out.println("Max Avg = " + maxMarksAvg);
+    }
+// --------------------------------------------------------------------------
+    private static void printIntArray(int[] arr) {
+        System.out.print("[");
+        for(int i = 0; i < arr.length; i++){
+            if(i == arr.length - 1) {
+                System.out.print(arr[i]);
+            } else {
+                System.out.print(arr[i]+", ");
+            }
+        }
+        System.out.print("] \n");
+    }
+
+    private static void printIntersection(int[] arr1, int[] arr2, ArrayList<Integer> result) {
+        printIntArray(arr1);
+        printIntArray(arr2);
+        System.out.println("arr1 ^ arr2 = " + result.toString());
+    }
+
+    // 14.1
+    public static void computeIntersectionOfSortedArrays(int[] arr1, int arr2[]) {
+        HashSet<Integer> set = new HashSet<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        for(int value : arr2) {
+            set.add(value);
+        }
+        for(int value : arr1) {
+            if(set.contains(value)) {
+                result.add(value);
+            }
+        }
+        printIntersection(arr1, arr2, result);
+    }
+// -------------------------------------------------------------------------
+    private static boolean mergeRemainingValues(int[] result, int[] leftArr, int[] rightArr,int k, int left, int right) {
+        if(left >= leftArr.length && right < rightArr.length) {
+                for(int i = right; i < rightArr.length ; i++) {
+                    result[k++] = rightArr[i];
+                }
+                return true;
+        }
+        return false;
+    }
+
+    // 14.2
+    public static void mergeTwoSortedArrays(int[] leftArr, int[] rightArr) {
+        int[] result = new int[leftArr.length + rightArr.length];
+        int left = 0;
+        int right = 0;
+        int k = 0;
+        printIntArray(leftArr);
+        printIntArray(rightArr);
+        while (left < leftArr.length || right < rightArr.length) {
+            if(mergeRemainingValues(result,leftArr,rightArr,k,left,right)) break;
+            if(mergeRemainingValues(result,rightArr,leftArr,k,right,left)) break;
+            result[k++] = (leftArr[left] < rightArr[right]) ? leftArr[left++] : rightArr[right++];
+        }
+
+        for(int value : result) {
+            System.out.print(value+" ");
+        }
+    }
+
+    // 14.3
+
+    private static class Person {
+        public String firstName;
+        public String lastName;
+        public Person(String firstName, String lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+
+        @Override
+        public String toString() {
+            return "{" +
+                     firstName + '\'' +
+                     lastName + '\'' +
+                    '}';
+        }
+    }
+
+    public static void removeFirstNameDuplicate() {
+        int currentIndex = 0;
+        ArrayList<Person> list = new ArrayList<>(Arrays.asList(new Person[]{
+                new Person("Ian", "Bell"),
+                new Person("David", "Grover"),
+                new Person("Ian", "Botham"),
+                new Person("Ian", "Chappell"),
+                new Person("Zen", "Hood")
+        }));
+        Collections.sort(list,(a,b) -> {
+            return a.firstName.compareTo(b.firstName);
+        });
+        for(int i = 0; i < list.size() - 1; i++) {
+            if(!list.get(i).firstName.equals(list.get(i + 1).firstName)){
+                list.set(currentIndex++,list.get(i));
+            }
+        }
+        if(!list.get(list.size() - 2).firstName.equals(list.get(list.size()-1).firstName)){
+            list.set(currentIndex++,list.get(list.size()-1));
+        }
+
+        System.out.println(list.subList(0,currentIndex));
+    }
+//----------------------------------
+    // 14.7
+    public static class Student {
+        public int age;
+        public String name;
+        public Student(int age, String name) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "{" + age +
+                    "," + name +
+                    '}';
+        }
+    }
+
+    private static void printObjectsArray(Object[] objects) {
+        for(Object object : objects) {
+            System.out.print(object.toString() + " ");
+        }
+    }
+
+    private static Student[] getStudents() {
+        Student[] students = new Student[] {
+                new Student(20,"Bob"),
+                new Student(23,"Bill"),
+                new Student(20,"Mike"),
+                new Student(21,"John"),
+                new Student(22,"Jonny"),
+                new Student(20,"Mark"),
+                new Student(22,"Patrick"),
+                new Student(20,"David"),
+                new Student(23,"Elon"),
+                new Student(20,"Simon")
+        };
+        return students;
+    }
+
+    public static void sortArrayWithRepeatedEntries1() {
+        Student[] students = getStudents();
+        printObjectsArray(students);
+        Arrays.sort(students, (s1,s2) -> {
+           return Integer.compare(s1.age, s2.age);
+        });
+        System.out.println();
+        printObjectsArray(students);
+    }
+
+    public static void sortArrayWithRepeatedEntries2() {
+        Student[] students = getStudents();
+        printObjectsArray(students);
+        HashMap<Integer, List<Student>> map = new HashMap<>();
+        for(Student student : students) {
+            if(map.containsKey(student.age)) {
+                map.get(student.age).add(student);
+            } else {
+                ArrayList<Student> studentsList = new ArrayList<>();
+                studentsList.add(student);
+                map.put(student.age, studentsList);
+            }
+        }
+        System.out.println();
+        map.values().forEach(studentsList ->{
+            System.out.println(studentsList);
+        });
+    }
+
+    // 1234
+    // 1 , 234
+    // 2 , 134
+    // 3 , 124
+    // 12 13
+    // 21 23
+    // 31 32,
+    // 123 132
+    // 213 231
+    // 312 321,
+
+    private static void generatePermutations(int[] arr) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for(int value : arr) {
+            arrayList.add(value);
+        }
+        generatePermutations(new ArrayList<Integer>(), arrayList);
+    }
+    private static void switchValuesFromRightToLeft(ArrayList<Integer> left, ArrayList<Integer> right,int i) {
+        ArrayList<Integer> newRight = new ArrayList<>();
+        right.forEach(val -> newRight.add(val));
+        ArrayList<Integer> newLeft = new ArrayList<>();
+        left.forEach(val -> newLeft.add(val));
+        newLeft.add(right.get(i));
+        newRight.remove(i);
+        generatePermutations(newLeft,newRight);
+    }
+    private static void generatePermutations(ArrayList<Integer> left, ArrayList<Integer> right) {
+        if(right.size() == 0) {
+            System.out.println(left.toString());
+            return;
+        }
+        for(int i = 0; i < right.size(); i++) {
+            switchValuesFromRightToLeft(left, right,i);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
