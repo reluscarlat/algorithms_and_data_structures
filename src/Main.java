@@ -6,7 +6,9 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        generatePowerSet(new int[]{1,2,3,4});
+        computeAllPalindromicDecopositions("0204451881");
+//        generateSubSetsOfSizeK(new int[]{1,2,3,4}, 3);
+//        generatePowerSet(new int[]{1,2,3,4});
 //        generatePermutations(new int[]{1,2,3,4,});
 //        sortArrayWithRepeatedEntries1();
 //        sortArrayWithRepeatedEntries2();
@@ -1694,17 +1696,19 @@ public class Main {
     // 16.4
 
     public static void generatePowerSet(int[] arr) {
-        for(int i = 0; i < arr.length; i++) {
-            generatePowerSet(arr,i);
+        for(int start = 0; start < arr.length; start++) {
+            for(int i = start; i < arr.length; i++) {
+                generatePowerSet(arr,start,i);
+            }
         }
     }
 
-    private static void generatePowerSet(int[] arr, int start) {
+    private static void generatePowerSet(int[] arr, int start, int end) {
         ArrayList<Integer> startingList = new ArrayList<>();
-        for(int i = 0; i < start; i++) {
+        for(int i = start; i < end; i++) {
             startingList.add(arr[i]);
         }
-        for(int i = start; i < arr.length; i++) {
+        for(int i = end; i < arr.length; i++) {
             ArrayList<Integer> list = new ArrayList<>();
             startingList.forEach(val->list.add(val));
             list.add(arr[i]);
@@ -1712,9 +1716,72 @@ public class Main {
         }
     }
 
+    // 16.5
+    // 1, 2, 3,4
 
+    // 1 / 2 / 3 / 4
 
+    // 1    - > 1,2 / 1,3 / 1,4
+    // 2    - > 2,3 / 2,4
+    // 3    - > 3,4
+    // 4    - > 4
 
+    // 1,2  -> 1,2,3 / 1,2,4
+    // 1 3  -> 1,3,4
+    // 1 4  -> 1,4
+
+    // initList.add(list(0))
+    // initList.add(list(1))
+
+    private static ArrayList<Integer> generateListWithNewValueAdded(int[] arr, ArrayList<Integer> list, int i) {
+        ArrayList<Integer> newList = new ArrayList<>();
+        list.forEach( val -> newList.add(val));
+        newList.add(arr[i]);
+        return newList;
+    }
+
+    private static void generateSubSetsOfSizeK(int[] arr, ArrayList<Integer> list, int start, int k) {
+        if(list.size() == k) return;
+        for(int i = start; i < arr.length; i++) {
+            ArrayList<Integer> newList = generateListWithNewValueAdded(arr, list, i);
+            if(newList.size() == k) {
+                System.out.println(newList.toString());
+            }
+            generateSubSetsOfSizeK(arr,newList,i+1,k);
+        }
+    }
+
+    public static void generateSubSetsOfSizeK(int[] arr, int k) {
+        generateSubSetsOfSizeK(arr, new ArrayList<Integer>(), 0, k);
+    }
+
+    // ------------
+    // 16.7
+
+    // 0204451881
+    // 020 - > 0, 2, 0 / 020
+    private static void printIfIsPalindrome(char[] arr, int start, int end) {
+        int k = 0;
+        for(int i = start; i < end; i++) {
+            if(arr[i] != arr[end - k++]) {
+                return;
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int i = start; i <= end; i++) {
+            stringBuilder.append(arr[i]);
+        }
+        System.out.println(stringBuilder + "  start = " + start + "   end = " + end);
+    }
+
+    public static void computeAllPalindromicDecopositions(String str) {
+        char[] arr = str.toCharArray();
+        for(int i = 0; i < arr.length; i++) {
+            for(int j = i; j < arr.length; j++) {
+                printIfIsPalindrome(arr, i, j);
+            }
+        }
+    }
 
 
 
@@ -1724,19 +1791,3 @@ public class Main {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
