@@ -1,12 +1,31 @@
 import algorithms.recursion.Fibonacci;
 import dataStructures.graph.GraphHashTable;
 import dataStructures.tree.BinarySearchTree;
+import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
+import questions.Questions;
 
+import java.text.DateFormatSymbols;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        computeAllPalindromicDecopositions("0204451881");
+        Questions.bitsInsertion("10000000000","00000010011",2);
+//        Questions.isListPalindrome();
+//        Questions.partition(5);
+//        Questions.rotateMatrix();
+//        Questions.checkPermutations2("abcde","abcd");
+//        Questions.checkPermutations2("abcde","abcse");
+//        Questions.checkPermutations2("abcde","abcde");
+//        System.out.println(Questions.checkPermutations1("abc","bas"));
+//        System.out.println(Questions.checkPermutations1("abc","ba"));
+//        System.out.println(Questions.checkPermutations1("abc","bac"));
+//        Questions.isUnique2("abcsefsf");
+//        Questions.isUnique("abcdefga");
+//----------------------------------------------------------------------------------------------
+//        System.out.println("abc".substring(0,"abc".length()));
+//        findIntersectionOfTwoArrays(new int[]{1,2,3,4,5,6,7},new int[]{1,3,5,6});
+//        findKpairsWithSmallestSum(new int[]{1,2,3,4,5}, new int[]{1,2,3,4,}, 5);
+//        computeAllPalindromicDecopositions("0204451881");
 //        generateSubSetsOfSizeK(new int[]{1,2,3,4}, 3);
 //        generatePowerSet(new int[]{1,2,3,4});
 //        generatePermutations(new int[]{1,2,3,4,});
@@ -325,33 +344,33 @@ public class Main {
 //        System.out.println(myStack.pick());
 //        System.out.println(myStack.pick());
     }
-    //    public static int add(int x, int y) {
-//        while( y != 0) {
-//            String s01 = String.format("%8s", Integer.toBinaryString(x & 0xFF)).replace(' ', '0');
-//            System.out.println("X = "+s01);
-//            String s02 = String.format("%8s", Integer.toBinaryString(y & 0xFF)).replace(' ', '0');
-//            System.out.println("Y = "+s02);
-//
-//            int carry = x & y;
-//            String s1 = String.format("%8s", Integer.toBinaryString(carry & 0xFF)).replace(' ', '0');
-//            System.out.println("C = "+s1);
-//            // Sum of bits of x and
-//            // y where at least one
-//            // of the bits is not set
-//            x = x ^ y;
-//            String s2 = String.format("%8s", Integer.toBinaryString(x & 0xFF)).replace(' ', '0');
-//            System.out.println("X = "+s2); // 00000010
-//
-//            // Carry is shifted by
-//            // one so that adding it
-//            // to x gives the required sum
-//            y = carry << 1;
-//            String s3 = String.format("%8s", Integer.toBinaryString(y & 0xFF)).replace(' ', '0');
-//            System.out.println("Y = "+s3); // 00000010
-//            System.out.println();
-//        }
-//        return x;
-//    }
+        public static int add(int x, int y) {
+        while( y != 0) {
+            String s01 = String.format("%8s", Integer.toBinaryString(x & 0xFF)).replace(' ', '0');
+            System.out.println("X = "+s01);
+            String s02 = String.format("%8s", Integer.toBinaryString(y & 0xFF)).replace(' ', '0');
+            System.out.println("Y = "+s02);
+
+            int carry = x & y;
+            String s1 = String.format("%8s", Integer.toBinaryString(carry & 0xFF)).replace(' ', '0');
+            System.out.println("C = "+s1);
+            // Sum of bits of x and
+            // y where at least one
+            // of the bits is not set
+            x = x ^ y;
+            String s2 = String.format("%8s", Integer.toBinaryString(x & 0xFF)).replace(' ', '0');
+            System.out.println("X = "+s2); // 00000010
+
+            // Carry is shifted by
+            // one so that adding it
+            // to x gives the required sum
+            y = carry << 1;
+            String s3 = String.format("%8s", Integer.toBinaryString(y & 0xFF)).replace(' ', '0');
+            System.out.println("Y = "+s3); // 00000010
+            System.out.println();
+        }
+        return x;
+    }
 //    0,3,-4, 5,-6, 7,1,6
 //      3,    4,    5,6,12
 //    0,  -1,   -2,
@@ -592,7 +611,6 @@ public class Main {
         // 1011
         //+0001
         //=1100
-        int i = 1;
         int carry = 0;
         while(y != 0) {
             carry = (x & y) << 1;
@@ -1783,10 +1801,59 @@ public class Main {
         }
     }
 
+    public static void findKpairsWithSmallestSum(int[] arr1, int arr2[], int k) {
+        List<List<Integer>> pairs = new ArrayList<>();
+        int resultLength;
+        for(int i = 0; i < arr1.length; i++) {
+            for(int j = 0; j < arr2.length; j++) {
+                ArrayList<Integer> pair = new ArrayList<>();
+                pair.add(arr1[i]);
+                pair.add(arr1[j]);
+                pairs.add(pair);
+            }
+        }
+        Collections.sort(pairs, (p1,p2) -> Integer.compare(p1.get(0) + p1.get(1), p2.get(0) + p2.get(1)));
+        resultLength = Integer.min(pairs.size(), k);
+        List<List<Integer>> resultList = new ArrayList<>();
+        for(int i = 0; i < resultLength; i++) {
+            resultList.add(pairs.get(i));
+        }
+        System.out.println(resultList);
+    }
 
+    public static void findIntersectionOfTwoArrays(int[] arr1, int[] arr2) {
+        List<Integer> result = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0; i < arr1.length; i++) {
+            set.add(arr1[i]);
+        }
+        for(int i = 0; i < arr2.length; i++) {
+            if(set.contains(arr2[i])) {
+                result.add(arr2[i]);
+            }
+        }
+        System.out.println(result);
+    }
+    public static class DayOfYearToDayOfWeekExample {
+        public static void main(String[] args) {
+            // Create a calendar with year and day of year.
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, 2017);
+            calendar.set(Calendar.DAY_OF_YEAR, 180);
 
+            // See the full information of the calendar object.
+            System.out.println(calendar.getTime().toString());
 
+            // Get the weekday and print it
+            int weekday = calendar.get(Calendar.DAY_OF_WEEK);
+            System.out.println("Weekday: " + weekday);
 
+            // Get weekday name
+            DateFormatSymbols dfs = new DateFormatSymbols();
+            System.out.println("Weekday: " + dfs.getWeekdays()[weekday]);
+
+        }
+    }
 
 
 
