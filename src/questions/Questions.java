@@ -3,6 +3,7 @@ package questions;
 import linkedList.Node;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class Questions {
     // Arrays:
@@ -207,6 +208,53 @@ public class Questions {
         System.out.println(result + " = " + num1);
     }
 
+    // Hamiltonian Cycle
+     public static int getNextValidVertex(int[][] grid, int[] result, int currentIndex) {
+        HashSet<Integer> resultSet = new HashSet<>();
+        int k;
+        for(k = 0; k < result.length && result[k] != 0; k++) {
+            resultSet.add(result[k]);
+        }
+        for(int i = 1; i < grid.length; i++) {
+            if(!resultSet.contains(i) && grid[currentIndex][i] == 1) {
+                return i;
+            }
+        }
+        return - 1;
+    }
 
+    public static void getCycle(int[][] grid, int[] result, int currentIndex) {
+        if(currentIndex >= result.length) return;
+        int vertex = 0;
+        while(vertex < grid.length) {
+            vertex = getNextValidVertex(grid, result, currentIndex);
+            if(vertex != -1 && currentIndex < result.length) {
+                result[currentIndex] = vertex;
+                getCycle(grid, result, currentIndex + 1);
+                if(currentIndex == grid.length - 1) {
+                    for(int j = 0; j < result.length; j++) {
+                        System.out.print(" " + result[j]);
+                    }
+                    System.out.println("*************");
+                }
+                result[currentIndex] = 0;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public static void hamiltonianCycle() {
+        int[][] grid = new int[][]{
+                {0,0,0,0,0,0},
+                {0,0,1,1,0,1},
+                {0,1,0,1,1,1},
+                {0,1,1,0,1,0},
+                {0,0,1,1,0,1},
+                {0,1,1,0,1,0}
+        };
+        int[] result = new int[grid.length];
+        getCycle(grid, result, 1);
+    }
 }
 

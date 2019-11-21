@@ -1,15 +1,112 @@
-import algorithms.recursion.Fibonacci;
-import dataStructures.graph.GraphHashTable;
-import dataStructures.tree.BinarySearchTree;
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
-import questions.Questions;
+import dataStructures.graph.*;
+import dataStructures.tree.TreeNode;
 
 import java.text.DateFormatSymbols;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
-        Questions.bitsInsertion("10000000000","00000010011",2);
+
+//        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(6);
+//        graph.addEdge(0, 1);
+//        graph.addEdge(0, 2);
+//        graph.addEdge(1, 2);
+//        graph.addEdge(1, 3);
+//        graph.addEdge(3, 4);
+//        graph.addEdge(2, 3);
+//        graph.addEdge(4, 0);
+//        graph.addEdge(4, 1);
+//        graph.addEdge(4, 5);
+//        graph.printAllPathsBetween(0,5);
+
+//        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(6);
+//        graph.addEdge(0, 1);
+//        graph.addEdge(0, 2);
+//        graph.addEdge(1, 3);
+//        graph.addEdge(1, 2);
+//        graph.addEdge(3, 4);
+//        graph.addEdge(2, 3);
+//        graph.addEdge(4, 0);
+//        graph.addEdge(4, 1);
+//        graph.addEdge(4, 5);
+//        graph.printGraph();
+//        List<Integer> dfsOrder = graph.dfsTraverse();
+//        System.out.println(dfsOrder);
+
+//        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(6);
+//        graph.addEdge(0, 1);
+//        graph.addEdge(1, 2);
+//        graph.addEdge(0, 2);
+//        graph.addEdge(1, 3);
+//        graph.addEdge(3, 4);
+//        graph.addEdge(2, 3);
+//        graph.addEdge(4, 0);
+//        graph.addEdge(4, 1);
+//        graph.addEdge(4, 5);
+//        graph.printGraph();
+//        List<Integer> result = graph.bfsTraverse();
+//        System.out.println(result);
+
+//        WeightDirectedGraphAdjacencyMatrix graph = new WeightDirectedGraphAdjacencyMatrix(5);
+//        graph.addEdge(0,1, 10);
+//        graph.addEdge(0,2, 23);
+//        graph.addEdge(1,3, -8);
+//        graph.addEdge(4,3, 12);
+//        graph.addEdge(3,2, 9);
+//        graph.addEdge(2,4, 25);
+//        graph.addEdge(0,3, -3);
+//        graph.addEdge(0,4, 3);
+//        graph.printGraph();
+
+//        WeightDirectedGraphAdjacencyList graph = new WeightDirectedGraphAdjacencyList(5);
+//        graph.addEdge(0,1, 10);
+//        graph.addEdge(0,2, 23);
+//        graph.addEdge(1,3, -8);
+//        graph.addEdge(4,3, 12);
+//        graph.addEdge(3,2, 9);
+//        graph.addEdge(2,4, 25);
+//        graph.addEdge(0,3, -3);
+//        graph.addEdge(0,4, 3);
+//        graph.printGraph();
+
+//        GraphAdjacencyMatrix graph = new GraphAdjacencyMatrix(5);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,3);
+//        graph.addEdge(4,3);
+//        graph.addEdge(3,2);
+//        graph.addEdge(2,4);
+//        graph.addEdge(0,3);
+//        graph.addEdge(0,4);
+//        graph.printMatrix();
+//        System.out.println();
+//        graph.printEdges();
+
+//        GraphAdjacencyList graph = new GraphAdjacencyList(5);
+//        graph.addEdge(0,1);
+//        graph.addEdge(0,2);
+//        graph.addEdge(1,3);
+//        graph.addEdge(4,3);
+//        graph.addEdge(3,2);
+//        graph.addEdge(2,4);
+//        graph.addEdge(0,3);
+//        graph.addEdge(0,4);
+//        graph.printGraph();
+
+//        label1:
+//        for(int i = 0; i < 10; i++) {
+//            System.out.println(" i = " + i);
+//            for(int j = 0 ;j < i; j++) {
+//                if(i == 5) {
+//                    break label1;
+//                }
+//                System.out.print(" " + j);
+//            }
+//        }
+
+//        Questions.hamiltonianCycle();
+//        Questions.bitsInsertion("10000000000","00000010011",2);
 //        Questions.isListPalindrome();
 //        Questions.partition(5);
 //        Questions.rotateMatrix();
@@ -314,6 +411,36 @@ public class Main {
 //        bst.delete(5);
 //        bst.printPreOrder();
 //        System.out.println(bst.contains(18));
+
+//        TREE TRAVERSE - RECURSIVE
+        TreeNode root = new TreeNode(7);
+        TreeNode n2 = new TreeNode(3);
+        TreeNode n3 = new TreeNode(11);
+        TreeNode n4 = new TreeNode(1);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n6 = new TreeNode(9);
+        TreeNode n7 = new TreeNode(13);
+        root.left = n2;
+        root.right = n3;
+        n2.left = n4;
+        n2.right = n5;
+        n3.left = n6;
+        n3.right = n7;
+
+//                        7
+//
+//              3                  11
+//
+//        1          5        9          13
+
+//        printPreOrder(root);
+//        System.out.println();
+//        printInOrder(root);
+//        System.out.println();
+//        printPostOrder(root);
+//        printPreOrderIterative(root);
+//        System.out.println();
+//        printInOrderIterative(root);
 
 
 
@@ -1855,6 +1982,64 @@ public class Main {
         }
     }
 
+    public static void printPreOrder(TreeNode current) {
+        if(current == null) return;
+        System.out.print("  " + current.val);
+        printPreOrder(current.left);
+        printPreOrder(current.right);
+    }
 
+    public static void printInOrder(TreeNode current) {
+        if(current == null) return;
+        printInOrder(current.left);
+        System.out.print("  " + current.val);
+        printInOrder(current.right);
+    }
 
+    public static void printPostOrder(TreeNode current) {
+        if(current == null) return;
+        printPostOrder(current.left);
+        printPostOrder(current.right);
+        System.out.print("  " + current.val);
+    }
+
+//                        7
+//
+//              3                  11
+//
+//        1          5        9          13
+
+    public static void printPreOrderIterative(TreeNode current) {
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(current);
+        while (!stack.isEmpty()) {
+            current = stack.pop();
+            System.out.print(" " + current.val);
+            if(current.right != null) {
+                stack.push(current.right);
+            }
+            if(current.left != null) {
+                stack.push(current.left);
+            }
+        }
+    }
+
+//                        7
+//
+//              3                  11
+//
+//        1          5        9          13
+
+    public static void printInOrderIterative(TreeNode current) {
+        Stack<TreeNode> stack = new Stack<>();
+        while(current !=null || !stack.isEmpty()) {
+            while(current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            System.out.print(" " + current.val);
+            current = current.right;
+        }
+    }
 }
