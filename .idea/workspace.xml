@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2017f71e-d265-4cad-808b-2b48cbba21d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dataStructures/tree/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dataStructures/graph/DisjointSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$A.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$A.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$DayOfYearToDayOfWeekExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$DayOfYearToDayOfWeekExample.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main$Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/questions/Questions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/questions/Questions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/dataStructures/graph/DirectedGraphAdjacencyList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/dataStructures/graph/DirectedGraphAdjacencyList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/dataStructures/graph/GraphAdjacencyList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlgorithmsAndDataStructures/dataStructures/graph/GraphAdjacencyMatrix.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/questions/Questions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/questions/Questions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructures/graph/UndirectedGraphAdjacencyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dataStructures/graph/UndirectedGraphAdjacencyMatrix.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+            <state relative-caret-position="209">
+              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,11 +55,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="95" column="36" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+            <state relative-caret-position="1862">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
               <folding>
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#496#497#0" expanded="true" />
+                <element signature="e#438#439#0" expanded="true" />
+                <element signature="e#483#484#0" expanded="true" />
+                <element signature="e#3360#3369#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/DisjointSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="70" column="17" lean-forward="true" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,6 +111,8 @@
       <find>reverse</find>
       <find>person</find>
       <find>vertexes</find>
+      <find>raverse</find>
+      <find>verteces</find>
     </findStrings>
     <replaceStrings>
       <replace>searched</replace>
@@ -111,6 +125,7 @@
       <replace>cHash</replace>
       <replace>sHash</replace>
       <replace>vertices</replace>
+      <replace>raversal</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -119,7 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DataStructures/Tree/Node.java" />
         <option value="$PROJECT_DIR$/src/dataStructures/Tree/Tree.java" />
         <option value="$PROJECT_DIR$/src/dataStructures/tree/Tree.java" />
         <option value="$PROJECT_DIR$/src/dataStructures/tree/TreeTest.java" />
@@ -167,8 +181,10 @@
         <option value="$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyList.java" />
         <option value="$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyMatrix.java" />
         <option value="$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyMatrix.java" />
-        <option value="$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/dataStructures/graph/UndirectedGraphAdjacencyList.java" />
+        <option value="$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java" />
+        <option value="$PROJECT_DIR$/src/dataStructures/graph/DisjointSet.java" />
       </list>
     </option>
   </component>
@@ -178,7 +194,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
@@ -210,6 +226,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dataStructures" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="AlgorithmsAndDataStructures" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlgorithmsAndDataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dataStructures" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -220,7 +243,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574300145317" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574397608747" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../algorithms_and_data_structures" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
@@ -237,7 +260,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.DisjointSet">
+    <configuration name="DisjointSet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dataStructures.graph.DisjointSet" />
+      <module name="AlgorithmsAndDataStructures" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dataStructures.graph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="AlgorithmsAndDataStructures" />
@@ -250,6 +286,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DisjointSet" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -274,16 +311,15 @@
       <workItem from="1571583057679" duration="44789000" />
       <workItem from="1572094183185" duration="6539000" />
       <workItem from="1572387134869" duration="24886000" />
-      <workItem from="1573348277737" duration="37728000" />
+      <workItem from="1573348277737" duration="51163000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="401299000" />
+    <option name="totallyTimeSpent" value="414734000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -629,16 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/questions/Questions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -649,17 +675,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyMatrix.java">
+    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/UndirectedGraphAdjacencyMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/GraphAdjacencyList.java">
+    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/UndirectedGraphAdjacencyList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        <state relative-caret-position="710">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/WeightDirectedGraphAdjacencyList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="641">
+          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -668,19 +704,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/DirectedGraphAdjacencyList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="95" column="36" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+        <state relative-caret-position="1862">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
           <folding>
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
+            <element signature="e#438#439#0" expanded="true" />
+            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#3360#3369#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        <state relative-caret-position="209">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dataStructures/graph/DisjointSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="70" column="17" lean-forward="true" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -8,6 +8,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+        UndirectedGraphAdjacencyList graph = new UndirectedGraphAdjacencyList(6);
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 4);
+        graph.addEdge(4, 5);
+        graph.addEdge(5, 2);
+        graph.detectCicles();
+
+//        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(7);
+//        graph.addEdge(1,3);
+//        graph.addEdge(2,3);
+//        graph.addEdge(0,4);
+//        graph.addEdge(4,5);
+//        graph.addEdge(5,6);
+//        graph.dfsInDisconectedGraph();
+
 //        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(6);
 //        graph.addEdge(0, 1);
 //        graph.addEdge(0, 2);
@@ -31,7 +48,7 @@ public class Main {
 //        graph.addEdge(4, 1);
 //        graph.addEdge(4, 5);
 //        graph.printGraph();
-//        List<Integer> dfsOrder = graph.dfsTraverse();
+//        List<Integer> dfsOrder = graph.dfsTraversal();
 //        System.out.println(dfsOrder);
 
 //        DirectedGraphAdjacencyList graph = new DirectedGraphAdjacencyList(6);
@@ -45,7 +62,7 @@ public class Main {
 //        graph.addEdge(4, 1);
 //        graph.addEdge(4, 5);
 //        graph.printGraph();
-//        List<Integer> result = graph.bfsTraverse();
+//        List<Integer> result = graph.bfsTraversal();
 //        System.out.println(result);
 
 //        WeightDirectedGraphAdjacencyMatrix graph = new WeightDirectedGraphAdjacencyMatrix(5);
@@ -70,7 +87,7 @@ public class Main {
 //        graph.addEdge(0,4, 3);
 //        graph.printGraph();
 
-//        GraphAdjacencyMatrix graph = new GraphAdjacencyMatrix(5);
+//        UndirectedGraphAdjacencyMatrix graph = new UndirectedGraphAdjacencyMatrix(5);
 //        graph.addEdge(0,1);
 //        graph.addEdge(0,2);
 //        graph.addEdge(1,3);
@@ -83,7 +100,7 @@ public class Main {
 //        System.out.println();
 //        graph.printEdges();
 
-//        GraphAdjacencyList graph = new GraphAdjacencyList(5);
+//        UndirectedGraphAdjacencyList graph = new UndirectedGraphAdjacencyList(5);
 //        graph.addEdge(0,1);
 //        graph.addEdge(0,2);
 //        graph.addEdge(1,3);
@@ -413,19 +430,19 @@ public class Main {
 //        System.out.println(bst.contains(18));
 
 //        TREE TRAVERSE - RECURSIVE
-        TreeNode root = new TreeNode(7);
-        TreeNode n2 = new TreeNode(3);
-        TreeNode n3 = new TreeNode(11);
-        TreeNode n4 = new TreeNode(1);
-        TreeNode n5 = new TreeNode(5);
-        TreeNode n6 = new TreeNode(9);
-        TreeNode n7 = new TreeNode(13);
-        root.left = n2;
-        root.right = n3;
-        n2.left = n4;
-        n2.right = n5;
-        n3.left = n6;
-        n3.right = n7;
+//        TreeNode root = new TreeNode(7);
+//        TreeNode n2 = new TreeNode(3);
+//        TreeNode n3 = new TreeNode(11);
+//        TreeNode n4 = new TreeNode(1);
+//        TreeNode n5 = new TreeNode(5);
+//        TreeNode n6 = new TreeNode(9);
+//        TreeNode n7 = new TreeNode(13);
+//        root.left = n2;
+//        root.right = n3;
+//        n2.left = n4;
+//        n2.right = n5;
+//        n3.left = n6;
+//        n3.right = n7;
 
 //                        7
 //

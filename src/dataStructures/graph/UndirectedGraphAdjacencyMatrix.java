@@ -1,10 +1,10 @@
 package dataStructures.graph;
 
-public class GraphAdjacencyMatrix {
+public class UndirectedGraphAdjacencyMatrix {
     private int vertices;
     private int[][] matrix;
 
-    public GraphAdjacencyMatrix(int vertices) {
+    public UndirectedGraphAdjacencyMatrix(int vertices) {
         this.vertices = vertices;
         matrix = new int[vertices][vertices];
     }

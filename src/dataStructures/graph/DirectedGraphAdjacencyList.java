@@ -3,13 +3,13 @@ package dataStructures.graph;
 import java.util.*;
 
 public class DirectedGraphAdjacencyList {
-    private int verteces;
+    private int vertices;
     private List<Integer>[] list;
 
-    public DirectedGraphAdjacencyList(int verteces) {
-        this.verteces = verteces;
-        list = new ArrayList[verteces];
-        for(int i = 0; i < verteces; i++) {
+    public DirectedGraphAdjacencyList(int vertices) {
+        this.vertices = vertices;
+        list = new ArrayList[vertices];
+        for(int i = 0; i < vertices; i++) {
             list[i] = new ArrayList<>();
         }
     }
@@ -19,7 +19,7 @@ public class DirectedGraphAdjacencyList {
     }
 
     public void printGraph() {
-        for(int i = 0; i < verteces; i++) {
+        for(int i = 0; i < vertices; i++) {
             if(!list[i].isEmpty()) {
                 System.out.print("Vertex " + i + " is directed to: ");
                 for(int j = 0; j < list[i].size(); j++) {
@@ -30,13 +30,13 @@ public class DirectedGraphAdjacencyList {
         }
     }
 
-    public List<Integer> bfsTraverse() {
+    public List<Integer> bfsTraversal() {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(0);
         HashSet<Integer> visited = new HashSet<>();
         List<Integer> bfsOrder = new ArrayList<>();
         int currentVertex;
-        while (visited.size() != verteces) {
+        while (visited.size() != vertices) {
             currentVertex = queue.poll();
             if(visited.contains(currentVertex)) {
                 continue;
@@ -51,25 +51,25 @@ public class DirectedGraphAdjacencyList {
         return bfsOrder;
     }
 
-    public List<Integer> dfsTraverse() {
+    public List<Integer> dfsTraversal() {
         List<Integer> dfsOrder = new ArrayList<>();
-        boolean[] visited = new boolean[verteces];
-        dfsTraverse(0,visited, dfsOrder);
+        boolean[] visited = new boolean[vertices];
+        dfsTraversal(0,visited, dfsOrder);
         return dfsOrder;
     }
 
-    public void dfsTraverse(int currentVertex, boolean[] visited, List<Integer> dfsOrder) {
+    public void dfsTraversal(int currentVertex, boolean[] visited, List<Integer> dfsOrder) {
         if(!visited[currentVertex]) {
             dfsOrder.add(currentVertex);
             visited[currentVertex] = true;
             for(int vertex : list[currentVertex]) {
-                dfsTraverse(vertex, visited, dfsOrder);
+                dfsTraversal(vertex, visited, dfsOrder);
             }
         }
     }
 
     public void printAllPathsBetween(int a, int b) {
-        boolean[] visited = new boolean[verteces];
+        boolean[] visited = new boolean[vertices];
         List<Integer> currentPath = new ArrayList<>();
         List<List<Integer>> paths = new ArrayList<>();
         dfsFindPaths(a,b,visited,currentPath, paths);
@@ -95,5 +95,17 @@ public class DirectedGraphAdjacencyList {
         }
         currentPath.remove(currentPath.size() - 1);
         visited[current] = false;
+    }
+
+    public void dfsInDisconectedGraph() {
+        boolean[] visited = new boolean[vertices];
+        List<Integer> dfsOrder = new ArrayList<Integer>();
+        for(int i = 0; i < vertices; i++) {
+            if(!visited[i]) {
+                dfsTraversal(i,visited,dfsOrder);
+                System.out.println(dfsOrder);
+                dfsOrder.clear();
+            }
+        }
     }
 }
